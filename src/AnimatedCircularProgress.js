@@ -22,7 +22,7 @@ export default class AnimatedCircularProgress extends React.Component {
     }
   }
 
-  animateFill() {
+  animateFill(callback = () => {}) {
     const { tension, friction } = this.props;
 
     Animated.spring(
@@ -32,14 +32,14 @@ export default class AnimatedCircularProgress extends React.Component {
         tension,
         friction
       }
-    ).start();
+    ).start(callback);
   }
 
-  performLinearAnimation(toValue, duration) {
+  performLinearAnimation(toValue, duration, callback = () => {}) {
     Animated.timing(this.state.chartFillAnimation, {
       toValue: toValue,
       duration: duration
-    }).start();
+    }).start(callback);
   }
 
   render() {
